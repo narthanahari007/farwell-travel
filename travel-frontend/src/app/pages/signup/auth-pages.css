@@ -1,0 +1,12 @@
+
+.auth-page{min-height:calc(100vh - 80px);display:grid;place-items:center;padding:60px 20px;background:var(--cloud);}
+.auth-card{width:min(460px,100%);background:#fff;padding:38px;border-radius:14px;box-shadow:var(--shadow);}
+.auth-card h1{font-size:34px;margin-top:22px;}
+.auth-card>p{margin:8px 0 24px;}
+.auth-card form{display:grid;gap:16px;}
+.auth-card label{display:grid;gap:7px;font-size:13px;font-weight:700;}
+.auth-card input{padding:13px 14px;border:1px solid var(--line);border-radius:7px;font:inherit;font-weight:400;}
+.full{width:100%;justify-content:center;}
+.switch{text-align:center;margin-top:20px!important;font-size:13px;}
+.switch a,.back-link{color:var(--teal-dark);font-weight:700;}
+.form-error{padding:10px 12px;background:#fff0ed;color:#a53d30;border-radius:6px;font-size:13px;}

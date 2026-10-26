@@ -1,0 +1,21 @@
+<section class="section">
+  <div class="wrap">
+    <div class="promo">
+      <div>
+        <h3>Fare drops, sent quietly.</h3>
+        <p>One email a week when prices fall on routes you actually search for. No spam, unsubscribe in one tap.</p>
+      </div>
+      <form class="promo-form" (ngSubmit)="onSubmit()">
+        <input
+          type="email"
+          placeholder="you@email.com"
+          [ngModel]="email()"
+          (ngModelChange)="email.set($event)"
+          name="email"
+          required>
+        <button type="submit" [disabled]="submitting()">{{ subscribed() ? 'Subscribed ✓' : (submitting() ? 'Saving…' : 'Notify me') }}</button>
+        <small class="newsletter-error" *ngIf="error()">{{ error() }}</small>
+      </form>
+    </div>
+  </div>
+</section>

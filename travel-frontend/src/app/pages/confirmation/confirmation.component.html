@@ -1,0 +1,13 @@
+
+<section class="confirmation"><div class="confirmation-card">
+  <div class="check">✓</div>
+  <h1>Booking confirmed</h1>
+  <p *ngIf="booking">Your Farwell reference is <strong>{{ booking.bookingReference }}</strong>.</p>
+  <p *ngIf="!booking">Your booking was submitted successfully.</p>
+  <div class="confirm-meta" *ngIf="booking">
+    <span>Status <strong>{{ booking.status }}</strong></span>
+    <span>Travel date <strong>{{ booking.travelDate }}</strong></span>
+    <span>Travelers <strong>{{ booking.travelers }}</strong></span>
+  </div>
+  <a routerLink="/" class="btn btn-primary">Back to home</a>
+</div></section>

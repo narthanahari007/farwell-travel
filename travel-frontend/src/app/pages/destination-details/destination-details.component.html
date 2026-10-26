@@ -1,0 +1,19 @@
+
+<section class="details-page"><div class="wrap">
+  <a routerLink="/" class="back-link">← Back to Farwell</a>
+  <div *ngIf="item() as d" class="detail-card">
+    <img [src]="d.img" [alt]="d.name">
+    <div class="detail-content">
+      <span class="tag">{{ d.tag }}</span>
+      <h1>{{ d.name }}</h1>
+      <p class="lead">{{ d.country }} · {{ d.note }}</p>
+      <p>Explore this Farwell destination and compare the packages currently available for your dates.</p>
+      <div class="detail-meta"><span>From {{ d.price }}</span></div>
+      <div class="detail-actions">
+        <a class="btn btn-primary" routerLink="/" fragment="packages">View packages</a>
+        <a class="btn btn-outline" routerLink="/">Back home</a>
+      </div>
+    </div>
+  </div>
+  <div class="notice" *ngIf="error()">{{ error() }}</div>
+</div></section>

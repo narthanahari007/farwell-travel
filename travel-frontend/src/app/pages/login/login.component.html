@@ -1,0 +1,13 @@
+
+<section class="auth-page"><div class="auth-card">
+  <a routerLink="/" class="back-link">← Farwell home</a>
+  <h1>Welcome back</h1>
+  <p>Sign in to manage bookings and finish your trip.</p>
+  <form (ngSubmit)="submit()">
+    <label>Email<input type="email" name="email" [(ngModel)]="email" required></label>
+    <label>Password<input type="password" name="password" [(ngModel)]="password" required minlength="6"></label>
+    <div class="form-error" *ngIf="error()">{{ error() }}</div>
+    <button class="btn btn-primary full" type="submit" [disabled]="submitting()">{{ submitting() ? 'Signing in…' : 'Log in' }}</button>
+  </form>
+  <p class="switch">New to Farwell? <a routerLink="/signup">Create an account</a></p>
+</div></section>

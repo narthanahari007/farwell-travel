@@ -1,0 +1,33 @@
+
+<header [class.shrink]="shrink()">
+  <div class="wrap nav-row">
+    <a routerLink="/" class="logo">
+      <svg class="logo-mark" viewBox="0 0 26 26" fill="none">
+        <path d="M13 1C13 1 4 8 4 15.5C4 20.7 8.1 25 13 25C17.9 25 22 20.7 22 15.5C22 8 13 1 13 1Z" stroke="#16213A" stroke-width="1.6"/>
+        <path d="M13 8V19M8.5 12L13 8L17.5 12" stroke="#E8973A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Farwell
+    </a>
+
+    <nav class="nav-links" [class.open]="menuOpen()">
+      <a routerLink="/" fragment="stays" (click)="menuOpen.set(false)">Stays</a>
+      <a routerLink="/" fragment="packages" (click)="menuOpen.set(false)">Packages</a>
+      <a routerLink="/" fragment="how" (click)="menuOpen.set(false)">How it works</a>
+      <a routerLink="/" fragment="reviews" (click)="menuOpen.set(false)">Reviews</a>
+    </nav>
+
+    <div class="nav-actions">
+      <ng-container *ngIf="!auth.user(); else signedIn">
+        <a routerLink="/login" class="btn btn-outline">Log in</a>
+        <a routerLink="/signup" class="btn btn-primary">Sign up free</a>
+      </ng-container>
+      <ng-template #signedIn>
+        <a routerLink="/account" class="nav-user">Hi, {{ auth.user()?.name }}</a>
+        <button type="button" class="btn btn-outline" (click)="logout()">Log out</button>
+      </ng-template>
+      <button class="menu-toggle" (click)="toggleMenu()" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>

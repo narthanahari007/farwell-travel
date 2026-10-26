@@ -1,0 +1,17 @@
+<section class="how" id="how">
+  <div class="wrap section">
+    <div class="section-head">
+      <div>
+        <h2>Three steps, no surprises</h2>
+        <p>The whole point of Farwell is that booking a trip shouldn't feel like a second job.</p>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step" *ngFor="let s of steps">
+        <div class="num mono">{{ s.num }}</div>
+        <h3>{{ s.title }}</h3>
+        <p>{{ s.copy }}</p>
+      </div>
+    </div>
+  </div>
+</section>

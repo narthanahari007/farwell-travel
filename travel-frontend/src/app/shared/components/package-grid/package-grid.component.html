@@ -1,0 +1,31 @@
+<section class="section" id="packages">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>Ready-made packages</h2>
+        <p>Flight, stay and a rough plan — bundled, discounted, and editable if you want to tweak it.</p>
+      </div>
+      <a routerLink="/" fragment="packages" class="see-all">See all packages</a>
+    </div>
+
+    <p class="component-error" *ngIf="error()">{{ error() }}</p>
+
+    <div class="pkg-grid" *ngIf="!loading() && packages().length">
+      <div class="pkg-card" *ngFor="let p of packages()">
+        <div class="pkg-img"><img [src]="p.img" [alt]="p.name" loading="lazy"></div>
+        <div class="pkg-body">
+          <span class="pkg-tag">{{ p.tag }}</span>
+          <h4>{{ p.name }}</h4>
+          <div class="pkg-meta">
+            <span>🗓 {{ p.days }}</span>
+            <span>👥 {{ p.people }}</span>
+          </div>
+          <div class="pkg-foot">
+            <div class="price"><strong>{{ p.price }}</strong><span>{{ p.per }}</span></div>
+            <button type="button" class="btn btn-primary" (click)="openPackage(p.id)">View</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

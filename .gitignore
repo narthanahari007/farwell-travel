@@ -1,0 +1,19 @@
+# Angular dependencies and generated files
+travel-frontend/node_modules/
+travel-frontend/.angular/
+travel-frontend/dist/
+# Laravel dependencies
+travel-backend/vendor/
+# Private environment files
+travel-backend/.env
+travel-frontend/.env
+.env
+# Local database
+travel-backend/database/database.sqlite
+# Logs
+travel-backend/storage/logs/
+# Editor and operating system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

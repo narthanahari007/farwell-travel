@@ -1,0 +1,52 @@
+
+<section class="results-page">
+  <div class="wrap">
+    <div class="results-top">
+      <div>
+        <a routerLink="/" class="back-link">← Back to search</a>
+        <h1>Search results</h1>
+        <p *ngIf="response() as r">
+          {{ r.query.from }} → {{ r.query.to }} · {{ r.query.departDate }} · {{ r.query.travelers }} traveler{{ r.query.travelers > 1 ? 's' : '' }}
+        </p>
+      </div>
+      <div class="result-count" *ngIf="response() as r">{{ r.result_count }} option{{ r.result_count === 1 ? '' : 's' }}</div>
+    </div>
+    <div class="notice" *ngIf="!response()">
+      <h3>No search loaded</h3>
+      <p>Start a new search from the Farwell homepage.</p>
+      <a routerLink="/" class="btn btn-primary">Search again</a>
+    </div>
+    <div class="empty" *ngIf="response() as r" [hidden]="r.result_count > 0">
+      <h3>No matching options yet</h3>
+      <p>Try another destination or date. Our demo inventory currently covers the seeded Farwell destinations.</p>
+      <a routerLink="/" class="btn btn-primary">Change search</a>
+    </div>
+    <div class="results-grid" *ngIf="response() as r">
+      <article class="result-card" *ngFor="let item of r.results">
+        <img [src]="$any(item).img" [alt]="$any(item).name" class="result-image" *ngIf="isPackage(item)">
+        <img [src]="$any(item).img" [alt]="$any(item).title" class="result-image" *ngIf="isOffer(item)">
+        <div class="result-body" *ngIf="isPackage(item)">
+          <span class="tag">{{ $any(item).tag }}</span>
+          <h2>{{ $any(item).name }}</h2>
+          <p>{{ $any(item).days }} · {{ $any(item).people }}</p>
+          <p class="description">{{ $any(item).description }}</p>
+          <div class="result-footer">
+            <div><strong>{{ $any(item).price }}</strong><span>{{ $any(item).per }}</span></div>
+            <a class="btn btn-primary" [routerLink]="['/packages', $any(item).id]">View package</a>
+          </div>
+        </div>
+        <div class="result-body" *ngIf="isOffer(item)">
+          <span class="tag">{{ $any(item).type | titlecase }}</span>
+          <h2>{{ $any(item).title }}</h2>
+          <p>{{ $any(item).subtitle }} · {{ $any(item).provider }}</p>
+          <div class="offer-details"><span *ngFor="let detail of $any(item).details">{{ detail }}</span></div>
+          <div class="result-footer">
+            <div><strong>{{ $any(item).price }}</strong><span>{{ $any(item).per }}</span></div>
+            <a class="btn btn-primary" [routerLink]="['/booking']"
+               [queryParams]="{ offerId: $any(item).id, mode: $any(item).type, title: $any(item).title, price: $any(item).price }">Book</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

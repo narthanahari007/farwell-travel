@@ -1,0 +1,22 @@
+
+<section class="booking-page"><div class="wrap">
+  <a routerLink="/" class="back-link">← Back to Farwell</a>
+  <div class="booking-grid">
+    <div class="booking-card">
+      <span class="tag">{{ mode | titlecase }}</span>
+      <h1>Complete your booking</h1>
+      <p>You're booking <strong>{{ title }}</strong>.</p>
+      <div class="summary"><span>Price</span><strong>{{ price }}</strong></div>
+      <label>Travel date<input type="date" name="travelDate" [(ngModel)]="travelDate" required></label>
+      <label>Travelers
+        <select name="travelers" [(ngModel)]="travelers">
+          <option *ngFor="let n of [1,2,3,4,5,6,7,8,9]" [ngValue]="n">{{ n }}</option>
+        </select>
+      </label>
+      <div class="form-error" *ngIf="error()">{{ error() }}</div>
+      <button class="btn btn-primary full" type="button" (click)="submit()" [disabled]="submitting()">
+        {{ submitting() ? 'Confirming…' : (auth.user() ? 'Confirm booking' : 'Log in to book') }}
+      </button>
+    </div>
+  </div>
+</div></section>

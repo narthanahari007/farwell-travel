@@ -1,0 +1,21 @@
+
+<section class="account-page"><div class="wrap">
+  <div *ngIf="auth.user() as user">
+    <p class="eyebrow">Your Farwell account</p>
+    <h1>Hello, {{ user.name }}</h1>
+    <p>{{ user.email }}</p>
+    <div class="account-section">
+      <div class="section-title"><h2>Your bookings</h2><a routerLink="/" class="btn btn-outline">Plan another trip</a></div>
+      <div class="empty" *ngIf="!loading() && !bookings().length">No bookings yet. Search for a trip and your confirmation will appear here.</div>
+      <article class="booking-row" *ngFor="let booking of bookings()">
+        <div><strong>{{ booking.bookingReference }}</strong><span>{{ booking.mode | titlecase }} · {{ booking.travelDate }}</span></div>
+        <div><strong>{{ booking.totalAmount }}</strong><span>{{ booking.travelers }} traveler{{ booking.travelers > 1 ? 's' : '' }} · {{ booking.status }}</span></div>
+      </article>
+      <p class="form-error" *ngIf="error()">{{ error() }}</p>
+    </div>
+  </div>
+  <div class="empty" *ngIf="!auth.user()">
+    <h2>Please log in</h2>
+    <a routerLink="/login" class="btn btn-primary">Log in</a>
+  </div>
+</div></section>

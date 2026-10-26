@@ -1,0 +1,80 @@
+<div class="ticket">
+  <div class="ticket-top">
+    <div class="ticket-modes" role="tablist" aria-label="Search type">
+      <button
+        type="button"
+        class="mode-btn"
+        [class.active]="mode() === 'flights'"
+        (click)="setMode('flights')">Flights</button>
+      <button
+        type="button"
+        class="mode-btn"
+        [class.active]="mode() === 'stays'"
+        (click)="setMode('stays')">Stays</button>
+      <button
+        type="button"
+        class="mode-btn"
+        [class.active]="mode() === 'packages'"
+        (click)="setMode('packages')">Packages</button>
+    </div>
+
+    <div class="field-row">
+      <div style="position:relative;">
+        <div class="two-col">
+          <div class="field">
+            <label for="fromCity">From</label>
+            <input id="fromCity" type="text" [ngModel]="from()" (ngModelChange)="from.set($event)" required>
+          </div>
+          <div class="field" [class.field-error]="errors().to">
+            <label for="toCity">To</label>
+            <input id="toCity" type="text" placeholder="Where to?" [ngModel]="to()" (ngModelChange)="to.set($event)" required>
+          </div>
+        </div>
+        <button class="swap-btn" type="button" (click)="swapCities()" aria-label="Swap origin and destination">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+            <path d="M7 7h13M17 3l4 4-4 4M17 17H4M7 21l-4-4 4-4" stroke="#16213A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="two-col">
+        <div class="field" [class.field-error]="errors().depart">
+          <label for="departDate">Depart</label>
+          <input id="departDate" type="date" [ngModel]="departDate()" (ngModelChange)="departDate.set($event)" required>
+        </div>
+        <div class="field">
+          <label for="returnDate">Return</label>
+          <input id="returnDate" type="date" [ngModel]="returnDate()" (ngModelChange)="returnDate.set($event)">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Travelers</label>
+        <div class="stepper">
+          <span>{{ travelerLabel() }}</span>
+          <div style="display:flex;gap:8px;">
+            <button type="button" class="stepper-btn" (click)="decTravelers()" aria-label="Fewer travelers">−</button>
+            <button type="button" class="stepper-btn" (click)="incTravelers()" aria-label="More travelers">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="perforation"></div>
+
+  <div class="search-error" *ngIf="apiError()">{{ apiError() }}</div>
+
+  <div class="ticket-bottom">
+    <div class="ticket-code mono">
+      <div>ROUTE <strong>{{ routeCode() }}</strong></div>
+      <div>CLASS <strong>ECONOMY</strong></div>
+    </div>
+  </div>
+
+  <div style="padding:0 26px 26px;">
+    <button class="search-submit" type="button" [disabled]="searching()" (click)="onSearch()">
+      {{ submitLabel() }}
+    </button>
+  </div>
+</div>

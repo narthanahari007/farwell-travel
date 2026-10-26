@@ -1,0 +1,18 @@
+
+<section class="details-page"><div class="wrap">
+  <a routerLink="/" class="back-link">← Back to Farwell</a>
+  <div *ngIf="item() as p" class="detail-card">
+    <img [src]="p.img" [alt]="p.name">
+    <div class="detail-content">
+      <span class="tag">{{ p.tag }}</span>
+      <h1>{{ p.name }}</h1>
+      <p class="lead">{{ p.description }}</p>
+      <div class="detail-meta"><span>{{ p.days }}</span><span>Up to {{ p.people }}</span><span>{{ p.price }} {{ p.per }}</span></div>
+      <div class="detail-actions">
+        <a class="btn btn-primary" [routerLink]="['/booking']" [queryParams]="{packageId:p.id,mode:'packages',title:p.name,price:p.price}">Book this package</a>
+        <a class="btn btn-outline" routerLink="/">Keep exploring</a>
+      </div>
+    </div>
+  </div>
+  <div class="notice" *ngIf="error()">{{ error() }}</div>
+</div></section>

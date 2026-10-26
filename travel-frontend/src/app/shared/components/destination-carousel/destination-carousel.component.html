@@ -1,0 +1,34 @@
+<section class="section" id="stays">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>Trending this week</h2>
+        <p>Places travelers like you are booking right now, picked from live search demand.</p>
+      </div>
+      <a href="#" class="see-all">Browse all destinations</button>
+    </div>
+
+    <p class="component-error" *ngIf="error()">{{ error() }}</p>
+
+    <div class="stub-row" *ngIf="!loading() && destinations().length">
+      <button class="stub" type="button" *ngFor="let d of destinations()" (click)="openDestination(d.id)">
+        <div class="stub-img">
+          <img [src]="d.img" [alt]="d.name + ', ' + d.country" loading="lazy">
+          <span class="stub-stamp">{{ d.tag }}</span>
+        </div>
+        <div class="stub-body">
+          <h4>{{ d.name }}</h4>
+          <div class="loc">{{ d.country }} · {{ d.note }}</div>
+          <div class="stub-foot">
+            <div class="price"><span>from</span><br><strong>{{ d.price }}</strong></div>
+            <span class="stub-arrow">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </button>
+    </div>
+  </div>
+</section>
